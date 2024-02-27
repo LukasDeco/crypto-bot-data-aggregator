@@ -1,6 +1,10 @@
 #!/bin/bash
 
+# Navigate to your repository directory
 cd /home/steven/crypto-bot-data-aggregator
+
+# Set the executable bit for the script
+chmod +x update_and_run.sh
 
 # Pull the latest changes from the main branch
 git pull origin main
