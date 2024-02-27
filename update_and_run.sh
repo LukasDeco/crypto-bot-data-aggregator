@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd /home/steven/crypto-bot-data-aggregator
+
 # Pull the latest changes from the main branch
 git pull origin main
 
