@@ -93,7 +93,7 @@ def get_github_main(github_token):
     df = pd.read_csv(r"input_data/github_repositories.csv")
     for index, row in df.iterrows():
         repo_response = get_all_repos(row['org_name'], github_token)
-        time.sleep(5)
+        time.sleep(2)
         for repo in repo_response:
             github_df = extract_repo_data(repo, row['token'])
             util.append_df_to_sql(github_df, "github")
