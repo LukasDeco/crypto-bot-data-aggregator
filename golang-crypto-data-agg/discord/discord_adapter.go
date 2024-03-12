@@ -10,23 +10,18 @@ import (
 
 // DiscordAdapter struct to interact with Discord API
 type DiscordAdapter struct {
-	BaseURL string // Base URL for Discord API
 }
 
 // NewDiscordAdapter creates a new instance of DiscordAdapter with default settings
 func NewDiscordAdapter() *DiscordAdapter {
-	return &DiscordAdapter{
-		BaseURL: "https://discord.com/api/",
-	}
+	return &DiscordAdapter{}
 }
 
 // GetInviteInfo makes a GET request to Discord API to retrieve invite information
-func (adapter *DiscordAdapter) GetInviteInfo(serverID string) (*DiscordInviteResponse, error) {
-	// Construct the request URL using the provided server ID
-	requestURL := fmt.Sprintf("%sinvite/%s?with_counts=true", adapter.BaseURL, serverID)
+func (adapter *DiscordAdapter) GetInviteInfo(inviteURL string) (*DiscordInviteResponse, error) {
 
 	// Create the HTTP GET request
-	req, err := http.NewRequest("GET", requestURL, nil)
+	req, err := http.NewRequest("GET", inviteURL, nil)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %v", err)
 	}
