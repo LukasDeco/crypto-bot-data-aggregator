@@ -1,5 +1,6 @@
 import pandas as pd
 import sqlite3
+import datetime
 
 def json_to_dataframe(json_data):
     """
@@ -71,3 +72,8 @@ def append_df_to_sql(df, table_name, database_name='crypto_data.db'):
 
 # Example usage:
 # append_df_to_sql(df, 'your_table_name', 'your_database.db')
+
+def log_message(message):
+    current_time = datetime.datetime.now()
+    formatted_time = current_time.strftime('%Y-%m-%d %H:%M:%S')
+    print(f"[{formatted_time}] {message}")

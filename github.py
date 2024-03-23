@@ -8,7 +8,7 @@ def is_valid_org(org_name, github_token):
     
     headers = {'Authorization': f'Bearer {github_token}'}
     
-    print(url)
+    #print(url)
     response = requests.get(url, headers=headers)
     return response.status_code == 200
 
@@ -92,10 +92,13 @@ def extract_repo_data(repo, token):
 def get_github_main(github_token):
     df = pd.read_csv(r"input_data/github_repositories.csv")
     for index, row in df.iterrows():
+        util.log_message(f'------- {row["token"]} -------')
+        util.log_message(f'START - {row["token"]}')
         repo_response = get_all_repos(row['org_name'], github_token)
         time.sleep(2)
         for repo in repo_response:
             github_df = extract_repo_data(repo, row['token'])
             util.append_df_to_sql(github_df, "github")
+        util.log_message(f'END - {row["token"]}')
             
             

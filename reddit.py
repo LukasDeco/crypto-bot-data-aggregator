@@ -43,8 +43,10 @@ def get_reddit_main():
     
     # Loop through Rows
     for index, row in df.iterrows():
-        print(f'Start - {row["token"]}')
+        util.log_message(f'------- {row["token"]} -------')
+        util.log_message(f'START - {row["token"]}')
         json_response = get_subreddit_info(row['subreddit'])
         subreddit_df = format_n_save_reddit(json_response, row['subreddit'], row['token'])
         util.append_df_to_sql(subreddit_df, "reddit")
+        util.log_message(f'END - {row["token"]}')
         #time.sleep(1)
